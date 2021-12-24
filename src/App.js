@@ -8,13 +8,22 @@ import Home from "./components/Cart";
 
 class App extends React.Component {
   state = {
-    cart: {}, //structure: { id: qnt}}
+    cart: {},
   };
 
   buy = (obj) => {
     let cart = this.state.cart;
-    // let id = ;
-    cart.obj.id = cart.obj.id + 1 || 1;
+    let id = obj.id;
+    if (cart[id]) {
+      cart[id].qnt = cart[id].qnt + 1;
+    } else {
+      cart[id] = {
+        qnt: 1,
+        title: obj.title,
+        price: obj.price,
+        imgUrl: obj.image,
+      };
+    }
     this.setState({ cart }, () => {
       console.log(this.state);
     });
@@ -27,13 +36,17 @@ class App extends React.Component {
           <Header />
           <Switch>
             <div>
-              <Route exact path="/" component={Cart} />
+              <Route exact path="/" component={Home} />
               <Route
                 exact
                 path="/products"
                 render={(props) => <Products clickFunc={this.buy} {...props} />}
               />
-              <Route exact path="/cart" component={Home} />
+              <Route
+                exact
+                path="/cart"
+                render={(props) => <Cart cart={this.state.cart} {...props} />}
+              />
             </div>
           </Switch>
         </Router>
