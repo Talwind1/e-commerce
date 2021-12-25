@@ -34,6 +34,7 @@ export default class Products extends Component {
   render() {
     return (
       <div>
+        <h1>hhhh1</h1>
         {this.state.isLoading && <h3>Loading..</h3>}
         {this.state.data.length > 0 && this.displayData()}
       </div>

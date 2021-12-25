@@ -3,8 +3,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Products from "./components/Products";
-import Cart from "./components/Home";
-import Home from "./components/Cart";
+import Cart from "./components/Cart";
+import Home from "./components/Home";
 
 class App extends React.Component {
   state = {
@@ -36,17 +36,14 @@ class App extends React.Component {
           <Header />
           <Switch>
             <div>
+              <Route exact path="/procudts">
+                <Products clickFunc={this.buy} />
+              </Route>
               <Route exact path="/" component={Home} />
-              <Route
-                exact
-                path="/products"
-                render={(props) => <Products clickFunc={this.buy} {...props} />}
-              />
-              <Route
-                exact
-                path="/cart"
-                render={(props) => <Cart cart={this.state.cart} {...props} />}
-              />
+
+              <Route exact path="/cart/">
+                <Cart myCart={this.state.cart} />
+              </Route>
             </div>
           </Switch>
         </Router>
