@@ -34,18 +34,17 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Header />
-          <Switch>
-            <div>
-              <Route exact path="/procudts">
-                <Products clickFunc={this.buy} />
-              </Route>
-              <Route exact path="/" component={Home} />
-
-              <Route exact path="/cart/">
-                <Cart myCart={this.state.cart} />
-              </Route>
-            </div>
-          </Switch>
+          {/* <Switch> */}
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/procudts">
+              <Products clickFunc={this.buy} />
+            </Route>
+            <Route exact path="/cart/">
+              <Cart myCart={this.state.cart} />
+            </Route>
+          </div>
+          {/* </Switch> */}
         </Router>
       </div>
     );
